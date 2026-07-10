@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import {
   ArrowRight,
   Code2,
@@ -11,6 +11,7 @@ import {
   X,
 } from 'lucide-react'
 import { motion } from 'framer-motion'
+import { MagneticLink, StarField, usePrefersReducedMotion } from './effects'
 
 const services = [
   {
@@ -59,14 +60,33 @@ const process = [
   ['04', 'Deploy', 'Launch through a dependable pipeline and keep improving after release.'],
 ]
 
+const revealUp = {
+  initial: { opacity: 0, y: 24 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, amount: 0.25 },
+  transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
+} as const
+
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const closeMenu = () => setMenuOpen(false)
+  const reducedMotion = usePrefersReducedMotion()
 
   useEffect(() => {
     document.body.classList.toggle('nav-locked', menuOpen)
     return () => document.body.classList.remove('nav-locked')
   }, [menuOpen])
+
+  const stageRef = useRef<HTMLDivElement>(null)
+
+  const handleStageMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (reducedMotion || !stageRef.current) return
+    const rect = stageRef.current.getBoundingClientRect()
+    const px = (event.clientX - rect.left) / rect.width
+    const py = (event.clientY - rect.top) / rect.height
+    stageRef.current.style.setProperty('--spot-x', `${px * 100}%`)
+    stageRef.current.style.setProperty('--spot-y', `${py * 100}%`)
+  }
 
   return (
     <div className="site-shell">
@@ -104,9 +124,9 @@ function App() {
         </nav>
 
         <div className="header-actions">
-          <a className="button button-small" href="#contact">
+          <MagneticLink className="button button-small" href="#contact" strength={10}>
             Start a project
-          </a>
+          </MagneticLink>
           <button
             className="menu-toggle"
             type="button"
@@ -129,19 +149,12 @@ function App() {
           >
             <p className="eyebrow">Software studio · Johannesburg</p>
             <h1>
-              Built with clarity. <span>Made to move.</span>
+              Building software. <span>Solving problems.</span> Creating impact.
             </h1>
-            <p className="hero-lead">
-              LunarWolf creates modern websites, custom software, and intelligent automation for
-              businesses ready to grow with confidence.
-            </p>
             <div className="hero-actions">
-              <a className="button" href="#contact">
-                Start your project <ArrowRight size={18} />
-              </a>
-              <a className="text-link" href="#work">
-                See our work <ArrowRight size={16} />
-              </a>
+              <MagneticLink className="button" href="#contact" strength={10}>
+                Start Your Project <ArrowRight size={18} aria-hidden="true" />
+              </MagneticLink>
             </div>
             <div className="hero-proof">
               <span>Live client work</span>
@@ -152,17 +165,28 @@ function App() {
 
           <motion.div
             className="crest-stage"
+            ref={stageRef}
             initial={{ opacity: 0, scale: 0.94 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.15 }}
+            onMouseMove={handleStageMouseMove}
             aria-hidden="true"
           >
+            <StarField className="crest-stars" />
             <div className="crest-glow" />
             <div className="crest-ring crest-ring-one" />
             <div className="crest-ring crest-ring-two" />
-            <div className="crest-moon">
-              <div className="crest-wolf">LW</div>
-            </div>
+            <div className="crest-spotlight" />
+            <picture>
+              <source srcSet="/brand/lunarwolf-mark.webp" type="image/webp" />
+              <img
+                src="/brand/lunarwolf-mark.png"
+                alt=""
+                width={520}
+                height={520}
+                className="crest-mark"
+              />
+            </picture>
             <div className="crest-caption">Strategy · Design · Engineering · Growth</div>
           </motion.div>
         </section>
@@ -180,7 +204,7 @@ function App() {
         </section>
 
         <section className="section-pad" id="work">
-          <div className="section-heading">
+          <motion.div className="section-heading" {...revealUp}>
             <div>
               <p className="eyebrow">Featured work</p>
               <h2>Proof before promises.</h2>
@@ -189,13 +213,18 @@ function App() {
               Every LunarWolf project should solve a real problem, communicate clearly, and leave
               the client with something stronger than they had before.
             </p>
-          </div>
-          <a
+          </motion.div>
+          <motion.a
             className="case-study"
             href="https://exclusive-pets-grooming.netlify.app/"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Exclusive Pets Grooming Parlour — view live website (opens in a new tab)"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] as const }}
+            whileHover={reducedMotion ? undefined : { y: -6 }}
           >
             <div className="case-visual">
               <span className="live-pill">Live project</span>
@@ -229,16 +258,16 @@ function App() {
                 <span className="sr-only"> (opens in a new tab)</span>
               </span>
             </div>
-          </a>
+          </motion.a>
         </section>
 
         <section className="section-pad section-muted" id="services">
-          <div className="section-heading compact">
+          <motion.div className="section-heading compact" {...revealUp}>
             <div>
-              <p className="eyebrow">What we build</p>
+              <p className="eyebrow">What We Build</p>
               <h2>Useful technology, thoughtfully delivered.</h2>
             </div>
-          </div>
+          </motion.div>
           <div className="card-grid">
             {services.map(({ icon: Icon, title, text }, index) => (
               <motion.article
@@ -248,6 +277,7 @@ function App() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.25 }}
                 transition={{ delay: index * 0.08 }}
+                whileHover={reducedMotion ? undefined : { y: -4 }}
               >
                 <Icon size={24} />
                 <h3>{title}</h3>
@@ -258,7 +288,7 @@ function App() {
         </section>
 
         <section className="section-pad" id="process">
-          <div className="section-heading">
+          <motion.div className="section-heading" {...revealUp}>
             <div>
               <p className="eyebrow">How we work</p>
               <h2>From first conversation to confident launch.</h2>
@@ -267,21 +297,34 @@ function App() {
               A transparent process keeps decisions clear, reduces waste, and gives every project a
               stronger foundation.
             </p>
-          </div>
+          </motion.div>
           <div className="process-grid">
-            {process.map(([number, title, text]) => (
-              <article className="process-step" key={number}>
+            {process.map(([number, title, text], index) => (
+              <motion.article
+                className="process-step"
+                key={number}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ delay: index * 0.1, duration: 0.5 }}
+              >
                 <span>{number}</span>
                 <h3>{title}</h3>
                 <p>{text}</p>
-              </article>
+              </motion.article>
             ))}
           </div>
         </section>
 
         <section className="section-pad about-section" id="about">
           <div className="about-grid">
-            <div className="about-visual">
+            <motion.div
+              className="about-visual"
+              initial={{ opacity: 0, x: -24 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] as const }}
+            >
               <img
                 src="/brand/lunarwolf-office.jpg"
                 alt="LunarWolf's workspace, showing the brand mark, a code editor, and a desk set up for focused engineering work"
@@ -289,40 +332,62 @@ function App() {
                 height={800}
                 loading="lazy"
               />
-            </div>
-            <div>
-              <p className="eyebrow">Why LunarWolf</p>
-              <h2>Calm thinking. Strong engineering. Honest delivery.</h2>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              <p className="eyebrow">Why LunarWolf Exists</p>
+              <h2>We build software businesses can depend on.</h2>
               <p className="about-intro">
                 LunarWolf is a South African software studio focused on practical digital work that
                 earns trust and creates momentum.
               </p>
-            </div>
+            </motion.div>
             <div className="principle-list">
-              {principles.map(({ icon: Icon, title, text }) => (
-                <article key={title}>
+              {principles.map(({ icon: Icon, title, text }, index) => (
+                <motion.article
+                  key={title}
+                  initial={{ opacity: 0, x: 24 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ delay: index * 0.1, duration: 0.5 }}
+                >
                   <Icon size={22} />
                   <div>
                     <h3>{title}</h3>
                     <p>{text}</p>
                   </div>
-                </article>
+                </motion.article>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="contact-section section-pad" id="contact">
+        <motion.section
+          className="contact-section section-pad"
+          id="contact"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6 }}
+        >
           <p className="eyebrow">Start something useful</p>
           <h2>Bring us the problem. We’ll help shape the right solution.</h2>
           <p>
             Whether it begins with a business website, an internal tool, or an automation idea, the
             first step is a clear conversation.
           </p>
-          <a className="button button-light" href="mailto:mikeywestman@gmail.com">
-            Start your project <ArrowRight size={18} />
-          </a>
-        </section>
+          <MagneticLink
+            className="button button-light"
+            href="mailto:mikeywestman@gmail.com"
+            strength={16}
+          >
+            Start your project <ArrowRight size={18} aria-hidden="true" />
+          </MagneticLink>
+        </motion.section>
       </main>
 
       <footer>
