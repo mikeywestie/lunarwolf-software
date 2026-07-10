@@ -5,35 +5,46 @@
 .founder-section::before {
   content: '';
   position: absolute;
-  inset: 8% 0 auto;
-  height: 420px;
+  inset: 10% 0 auto;
+  height: 300px;
   pointer-events: none;
-  background: radial-gradient(circle at 22% 42%, rgba(112, 200, 255, 0.12), transparent 34%);
+  background: radial-gradient(circle at 24% 44%, rgba(112, 200, 255, 0.08), transparent 32%);
 }
 
 .founder-card {
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: minmax(280px, 0.82fr) minmax(0, 1.18fr);
-  gap: 56px;
+  grid-template-columns: minmax(220px, 0.58fr) minmax(0, 1.42fr);
+  gap: 40px;
   align-items: center;
-  padding: 34px;
+  padding: 26px;
   border: 1px solid var(--line);
-  border-radius: 34px;
+  border-radius: 28px;
   overflow: hidden;
+<<<<<<< HEAD
   background:
     linear-gradient(145deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.012)), var(--panel);
   box-shadow: 0 36px 90px rgba(0, 0, 0, 0.26);
+=======
+  background: rgba(255, 255, 255, 0.018);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.18);
+>>>>>>> bbde79bd87b9ca2d0fbc6a8b92958441c06e5a02
 }
 
 .founder-portrait-wrap {
   position: relative;
-  min-height: 520px;
-  border-radius: 26px;
+  min-height: 360px;
+  max-height: 420px;
+  border-radius: 22px;
   overflow: hidden;
   background:
+<<<<<<< HEAD
     radial-gradient(circle at 50% 30%, rgba(112, 200, 255, 0.17), transparent 38%), #071522;
+=======
+    radial-gradient(circle at 50% 30%, rgba(112, 200, 255, 0.12), transparent 38%),
+    #071522;
+>>>>>>> bbde79bd87b9ca2d0fbc6a8b92958441c06e5a02
 }
 
 .founder-portrait-wrap::after {
@@ -42,74 +53,77 @@
   inset: 0;
   pointer-events: none;
   background:
-    linear-gradient(180deg, transparent 60%, rgba(4, 16, 29, 0.7)),
-    linear-gradient(135deg, rgba(112, 200, 255, 0.08), transparent 42%);
+    linear-gradient(180deg, transparent 66%, rgba(4, 16, 29, 0.58)),
+    linear-gradient(135deg, rgba(112, 200, 255, 0.05), transparent 46%);
 }
 
 .founder-portrait {
   width: 100%;
   height: 100%;
-  min-height: 520px;
+  min-height: 360px;
+  max-height: 420px;
   object-fit: cover;
   object-position: center top;
-  filter: saturate(0.86) contrast(1.04);
+  filter: saturate(0.82) contrast(1.02);
 }
 
 .founder-portrait-fallback {
   object-fit: contain;
-  padding: 52px;
-  filter: drop-shadow(0 0 30px rgba(112, 200, 255, 0.2));
+  padding: 42px;
+  filter: drop-shadow(0 0 24px rgba(112, 200, 255, 0.18));
 }
 
 .founder-copy h2 {
-  max-width: 760px;
-  margin-bottom: 24px;
+  max-width: 680px;
+  margin-bottom: 18px;
+  font-size: clamp(2rem, 4vw, 3.6rem);
 }
 
 .founder-name {
   margin-bottom: 4px;
   color: var(--text);
-  font-size: 1.2rem;
+  font-size: 1.08rem;
   font-weight: 800;
 }
 
 .founder-role {
-  margin-bottom: 26px;
+  margin-bottom: 20px;
   color: var(--accent);
-  font-size: 0.82rem;
+  font-size: 0.76rem;
   font-weight: 800;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
 }
 
 .founder-copy blockquote {
-  margin: 0 0 24px;
-  padding: 22px 0 22px 24px;
-  border-left: 2px solid var(--accent);
+  margin: 0 0 18px;
+  padding: 16px 0 16px 20px;
+  border-left: 2px solid rgba(112, 200, 255, 0.72);
   color: var(--accent-soft);
-  font-size: clamp(1.12rem, 2vw, 1.38rem);
-  line-height: 1.6;
+  font-size: clamp(1rem, 1.7vw, 1.2rem);
+  line-height: 1.58;
 }
 
 .founder-copy > p:not(.eyebrow, .founder-name, .founder-role) {
+  max-width: 760px;
   color: var(--muted);
-  line-height: 1.78;
+  line-height: 1.72;
 }
 
 .founder-highlights {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 30px;
+  gap: 8px;
+  margin-top: 24px;
 }
 
 .founder-highlights span {
-  padding: 9px 13px;
+  padding: 7px 11px;
   border: 1px solid var(--line);
   border-radius: 999px;
   color: var(--silver);
-  background: rgba(255, 255, 255, 0.025);
-  font-size: 0.78rem;
+  background: rgba(255, 255, 255, 0.018);
+  font-size: 0.74rem;
 }
 
 .purpose-grid {
@@ -117,18 +131,18 @@
   z-index: 1;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
-  margin-top: 24px;
+  gap: 16px;
+  margin-top: 18px;
 }
 
 .purpose-grid article {
   position: relative;
-  min-height: 330px;
-  padding: 30px;
+  min-height: 270px;
+  padding: 26px;
   border: 1px solid var(--line);
-  border-radius: 26px;
+  border-radius: 22px;
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(255, 255, 255, 0.014);
 }
 
 .purpose-grid article::after {
@@ -136,43 +150,45 @@
   position: absolute;
   right: -70px;
   bottom: -70px;
-  width: 180px;
-  height: 180px;
+  width: 160px;
+  height: 160px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(112, 200, 255, 0.12), transparent 68%);
+  background: radial-gradient(circle, rgba(112, 200, 255, 0.08), transparent 68%);
 }
 
 .purpose-number {
   display: block;
-  margin-bottom: 70px;
-  color: rgba(216, 241, 255, 0.32);
-  font-size: 0.78rem;
+  margin-bottom: 44px;
+  color: rgba(216, 241, 255, 0.26);
+  font-size: 0.72rem;
   font-weight: 800;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.16em;
 }
 
 .purpose-grid h3 {
   max-width: 340px;
-  margin-bottom: 16px;
-  font-size: clamp(1.45rem, 2.4vw, 2rem);
-  line-height: 1.15;
+  margin-bottom: 14px;
+  font-size: clamp(1.3rem, 2.1vw, 1.75rem);
+  line-height: 1.18;
 }
 
 .purpose-grid article > p:last-child {
   position: relative;
   z-index: 1;
   color: var(--muted);
-  line-height: 1.72;
+  line-height: 1.68;
 }
 
 @media (max-width: 1000px) {
   .founder-card {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(190px, 0.55fr) minmax(0, 1.45fr);
+    gap: 28px;
   }
 
   .founder-portrait-wrap,
   .founder-portrait {
-    min-height: 460px;
+    min-height: 320px;
+    max-height: 360px;
   }
 
   .purpose-grid {
@@ -184,27 +200,39 @@
   }
 
   .purpose-number {
-    margin-bottom: 42px;
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 760px) {
+  .founder-card {
+    grid-template-columns: 1fr;
+  }
+
+  .founder-portrait-wrap,
+  .founder-portrait {
+    min-height: 300px;
+    max-height: 360px;
   }
 }
 
 @media (max-width: 620px) {
   .founder-card {
-    gap: 34px;
-    padding: 18px;
-    border-radius: 24px;
+    gap: 26px;
+    padding: 16px;
+    border-radius: 22px;
   }
 
   .founder-portrait-wrap,
   .founder-portrait {
-    min-height: 380px;
+    min-height: 280px;
   }
 
   .founder-copy blockquote {
-    padding-left: 18px;
+    padding-left: 16px;
   }
 
   .purpose-grid article {
-    padding: 24px;
+    padding: 22px;
   }
 }
