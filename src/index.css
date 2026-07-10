@@ -207,3 +207,15 @@ footer { padding-block: 34px; color: var(--muted); font-size: .85rem; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }
+
+.brand-logo {
+    height: 54px;
+    width: auto;
+    display: block;
+    object-fit: contain;
+    transition: transform 0.25s ease;
+}
+
+.brand-logo:hover {
+    transform: scale(1.03);
+}

@@ -38,9 +38,12 @@ function App() {
   return (
     <div className="site-shell">
       <header className="site-header">
-        <a className="brand" href="#top" aria-label="LunarWolf home" onClick={closeMenu}>
-          <span className="brand-mark" aria-hidden="true"><span>LW</span></span>
-          <span className="brand-name">LunarWolf</span>
+        <a className="brand" href="#top" aria-label="LunarWolf home">
+            <img
+                src="/brand/lunarwolf-logo.png"
+                alt="LunarWolf"
+                className="brand-logo"
+            />
         </a>
 
         <nav className={menuOpen ? 'nav-open' : ''} aria-label="Primary navigation">
@@ -196,7 +199,13 @@ function App() {
       </main>
 
       <footer>
-        <a className="brand" href="#top"><span className="brand-mark"><span>LW</span></span><span className="brand-name">LunarWolf</span></a>
+        <a className="brand" href="#top">
+            <img
+                src="/brand/lunarwolf-logo.png"
+                alt="LunarWolf"
+                className="brand-logo"
+            />
+        </a>
         <p>Building software, systems, and momentum.</p>
         <span>© {new Date().getFullYear()} LunarWolf</span>
       </footer>
