@@ -1,0 +1,104 @@
+.contact-section::before,
+.contact-section::after {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  filter: none;
+  will-change: transform;
+}
+
+.contact-section::before {
+  top: 2%;
+  left: -44rem;
+  width: 48rem;
+  height: 18rem;
+  opacity: 0.96;
+  background-image: url('/brand/cloud-near.svg');
+  animation: lunarwolf-cloud-near 38s linear infinite;
+}
+
+.contact-section::after {
+  right: -35rem;
+  bottom: -1.5rem;
+  width: 38rem;
+  height: 14rem;
+  opacity: 0.72;
+  background-image: url('/brand/cloud-far.svg');
+  animation: lunarwolf-cloud-far 52s linear infinite;
+}
+
+@keyframes lunarwolf-cloud-near {
+  from {
+    transform: translate3d(0, 0, 0) scale(0.88);
+  }
+  50% {
+    transform: translate3d(calc(50vw + 42rem), -0.7rem, 0) scale(0.92);
+  }
+  to {
+    transform: translate3d(calc(100vw + 92rem), 0.4rem, 0) scale(0.88);
+  }
+}
+
+@keyframes lunarwolf-cloud-far {
+  from {
+    transform: translate3d(0, 0, 0) scale(0.82);
+  }
+  50% {
+    transform: translate3d(calc(-50vw - 35rem), 0.6rem, 0) scale(0.86);
+  }
+  to {
+    transform: translate3d(calc(-100vw - 76rem), -0.3rem, 0) scale(0.82);
+  }
+}
+
+@media (max-width: 900px) {
+  .contact-section::before {
+    left: -34rem;
+    width: 39rem;
+    height: 15rem;
+  }
+
+  .contact-section::after {
+    right: -28rem;
+    width: 31rem;
+    height: 12rem;
+  }
+}
+
+@media (max-width: 620px) {
+  .contact-section::before {
+    top: 4%;
+    left: -27rem;
+    width: 31rem;
+    height: 12rem;
+    opacity: 0.82;
+  }
+
+  .contact-section::after {
+    right: -23rem;
+    bottom: -0.5rem;
+    width: 25rem;
+    height: 10rem;
+    opacity: 0.58;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-section::before,
+  .contact-section::after {
+    animation: none;
+  }
+
+  .contact-section::before {
+    left: -9rem;
+  }
+
+  .contact-section::after {
+    right: -8rem;
+  }
+}
