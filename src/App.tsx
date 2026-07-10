@@ -12,6 +12,7 @@ import {
 } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { MagneticLink, StarField, usePrefersReducedMotion } from './effects'
+import './brand.css'
 
 const services = [
   {
