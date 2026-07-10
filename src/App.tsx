@@ -13,6 +13,7 @@ import {
 import { motion } from 'framer-motion'
 import { MagneticLink, StarField, usePrefersReducedMotion } from './effects'
 import './brand.css'
+import './founder.css'
 
 const services = [
   {
@@ -117,6 +118,9 @@ function App() {
           </a>
           <a href="#about" onClick={closeMenu}>
             About
+          </a>
+          <a href="#founder" onClick={closeMenu}>
+            Founder
           </a>
           <a href="#contact" onClick={closeMenu}>
             Contact
@@ -366,6 +370,79 @@ function App() {
                 </motion.article>
               ))}
             </div>
+          </div>
+        </section>
+
+        <section className="founder-section section-pad" id="founder">
+          <motion.div className="founder-card" {...revealUp}>
+            <div className="founder-portrait-wrap">
+              <img
+                src="/brand/michael-westman-founder.jpg"
+                alt="Michael Westman, founder of LunarWolf"
+                className="founder-portrait"
+                width={900}
+                height={900}
+                loading="lazy"
+                onError={(event) => {
+                  event.currentTarget.src = '/brand/lunarwolf-logo.png'
+                  event.currentTarget.classList.add('founder-portrait-fallback')
+                }}
+              />
+            </div>
+
+            <div className="founder-copy">
+              <p className="eyebrow">Meet the founder</p>
+              <h2>Founder-led today. Built to grow tomorrow.</h2>
+              <p className="founder-name">Michael Westman</p>
+              <p className="founder-role">Founder & Software Engineer</p>
+              <blockquote>
+                “I started LunarWolf because software should solve real business problems—not create
+                new ones. Every project is built with the same care and quality I would expect if I
+                were the client.”
+              </blockquote>
+              <p>
+                Michael brings more than eight years of software experience across enterprise
+                systems, secure APIs, backend engineering, modern web development, and technical
+                operations. Clients work directly with the founder, with trusted specialists joining
+                projects when their expertise creates more value.
+              </p>
+              <div className="founder-highlights" aria-label="Founder experience highlights">
+                <span>8+ years in software</span>
+                <span>Java & Spring Boot specialist</span>
+                <span>Enterprise experience</span>
+                <span>South African based</span>
+              </div>
+            </div>
+          </motion.div>
+
+          <div className="purpose-grid">
+            <motion.article {...revealUp}>
+              <span className="purpose-number">01</span>
+              <p className="eyebrow">Mission</p>
+              <h3>Build software that helps businesses grow with confidence.</h3>
+              <p>
+                We turn business problems into clear, dependable digital solutions that create
+                momentum rather than complexity.
+              </p>
+            </motion.article>
+            <motion.article {...revealUp}>
+              <span className="purpose-number">02</span>
+              <p className="eyebrow">Vision</p>
+              <h3>Become a trusted boutique software studio known for lasting work.</h3>
+              <p>
+                LunarWolf is being built to grow into a focused team recognised for craftsmanship,
+                honesty, and long-term client partnerships.
+              </p>
+            </motion.article>
+            <motion.article {...revealUp}>
+              <span className="purpose-number">03</span>
+              <p className="eyebrow">The team ahead</p>
+              <h3>Small by design. Stronger through the right people.</h3>
+              <p>
+                As LunarWolf grows, every engineer, designer, and specialist who joins will be
+                introduced here with a clear role and real contribution.
+              </p>
+            </motion.article>
           </div>
         </section>
 
