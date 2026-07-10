@@ -212,8 +212,10 @@ function FlappyWolf() {
       const wolfBottom = wolfYRef.current + WOLF_SIZE / 2
       const hitBoundary = wolfTop < 0 || wolfBottom > HEIGHT
       const hitObstacle = obstaclesRef.current.some((obstacle) => {
-        const overlapsX = WOLF_X + WOLF_SIZE / 2 > obstacle.x && WOLF_X - WOLF_SIZE / 2 < obstacle.x + PIPE_WIDTH
-        const outsideGap = wolfTop < obstacle.gapY - PIPE_GAP / 2 || wolfBottom > obstacle.gapY + PIPE_GAP / 2
+        const overlapsX =
+          WOLF_X + WOLF_SIZE / 2 > obstacle.x && WOLF_X - WOLF_SIZE / 2 < obstacle.x + PIPE_WIDTH
+        const outsideGap =
+          wolfTop < obstacle.gapY - PIPE_GAP / 2 || wolfBottom > obstacle.gapY + PIPE_GAP / 2
         return overlapsX && outsideGap
       })
 
@@ -250,8 +252,8 @@ function FlappyWolf() {
         <p className="eyebrow">A very serious business feature</p>
         <h2>The LunarWolf Break Room.</h2>
         <p>
-          We included this game so the team can stay entertained while waiting for your call. You are,
-          of course, welcome to test it too.
+          We included this game so the team can stay entertained while waiting for your call. You
+          are, of course, welcome to test it too.
         </p>
         <div className="break-room-meta">
           <span>Score: {score}</span>
@@ -274,7 +276,11 @@ function FlappyWolf() {
           }}
         />
         <button type="button" onClick={flap}>
-          {gameState === 'playing' ? 'Flap' : gameState === 'game-over' ? 'Play again' : 'Start game'}
+          {gameState === 'playing'
+            ? 'Flap'
+            : gameState === 'game-over'
+              ? 'Play again'
+              : 'Start game'}
         </button>
       </div>
     </section>
