@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 220" role="img" aria-label="">
+  <defs>
+    <linearGradient id="body" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.62" stop-color="#f3f9fd"/>
+      <stop offset="1" stop-color="#d8eaf5"/>
+    </linearGradient>
+    <radialGradient id="shine" cx="38%" cy="20%" r="70%">
+      <stop offset="0" stop-color="#fffdf7" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="soft" x="-20%" y="-30%" width="140%" height="170%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="5" result="blur"/>
+      <feOffset dy="8" result="offset"/>
+      <feColorMatrix in="offset" values="0 0 0 0 0.18 0 0 0 0 0.45 0 0 0 0 0.67 0 0 0 .18 0" result="shadow"/>
+      <feMerge>
+        <feMergeNode in="shadow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <g filter="url(#soft)">
+    <path fill="url(#body)" d="M79 169c-33 0-59-21-59-47 0-25 24-45 55-47 9-31 38-53 74-53 26 0 50 12 64 32 13-8 28-13 44-13 31 0 58 19 66 46 8-3 16-4 24-4 30 0 55 18 63 44 9-5 20-7 31-7 33 0 59 22 59 49 0 28-26 49-59 49H79z"/>
+    <ellipse cx="166" cy="74" rx="55" ry="44" fill="url(#shine)"/>
+    <ellipse cx="277" cy="86" rx="48" ry="39" fill="url(#shine)" opacity="0.72"/>
+    <ellipse cx="381" cy="120" rx="42" ry="32" fill="url(#shine)" opacity="0.58"/>
+  </g>
+</svg>
