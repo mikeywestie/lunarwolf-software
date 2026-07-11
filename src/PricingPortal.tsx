@@ -27,7 +27,7 @@ const pricingOptions: PricingOption[] = [
   },
   {
     name: 'Business',
-    price: 'From R12,000',
+    price: 'From R5,000',
     description: 'A more complete digital platform designed around how your business works.',
     features: [
       'Multi-page business website',
