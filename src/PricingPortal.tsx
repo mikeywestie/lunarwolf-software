@@ -15,7 +15,7 @@ type PricingOption = {
 const pricingOptions: PricingOption[] = [
   {
     name: 'Starter',
-    price: 'From R4,500',
+    price: 'From R1,500',
     description: 'A focused online presence for individuals, startups, and local businesses.',
     features: [
       'Landing page or compact website',
