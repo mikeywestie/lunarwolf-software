@@ -2,6 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App'
 import BreakRoomPortal from './BreakRoomPortal'
+import ContactPortal from './ContactPortal'
 import FeaturedProjectsPortal from './FeaturedProjectsPortal'
 import LiveStudioPortal from './LiveStudioPortal'
 import PricingPortal from './PricingPortal'
@@ -13,6 +14,7 @@ createRoot(document.getElementById('root')!).render(
     <App />
     <FeaturedProjectsPortal />
     <PricingPortal />
+    <ContactPortal />
     <BreakRoomPortal />
     <LiveStudioPortal />
   </StrictMode>,
