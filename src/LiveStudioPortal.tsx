@@ -8,6 +8,7 @@ type StudioMode = 'menu' | 'watch' | 'join'
 export default function LiveStudioPortal() {
   const [open, setOpen] = useState(false)
   const [mode, setMode] = useState<StudioMode>('menu')
+  const [previewEnabled, setPreviewEnabled] = useState(false)
   const [permissionMessage, setPermissionMessage] = useState('Camera and microphone are off.')
   const videoRef = useRef<HTMLVideoElement>(null)
   const streamRef = useRef<MediaStream | null>(null)
@@ -15,7 +16,12 @@ export default function LiveStudioPortal() {
   const stopPreview = () => {
     streamRef.current?.getTracks().forEach((track) => track.stop())
     streamRef.current = null
-    if (videoRef.current) videoRef.current.srcObject = null
+
+    if (videoRef.current) {
+      videoRef.current.srcObject = null
+    }
+
+    setPreviewEnabled(false)
     setPermissionMessage('Camera and microphone are off.')
   }
 
@@ -34,17 +40,28 @@ export default function LiveStudioPortal() {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true })
       streamRef.current = stream
+
       if (videoRef.current) {
         videoRef.current.srcObject = stream
         await videoRef.current.play()
       }
+
+      setPreviewEnabled(true)
       setPermissionMessage('Private preview enabled. You are not live.')
     } catch {
-      setPermissionMessage('Permission was not granted. You can still watch without camera or microphone.')
+      setPreviewEnabled(false)
+      setPermissionMessage(
+        'Permission was not granted. You can still watch without camera or microphone.',
+      )
     }
   }
 
-  useEffect(() => () => stopPreview(), [])
+  useEffect(() => {
+    return () => {
+      streamRef.current?.getTracks().forEach((track) => track.stop())
+      streamRef.current = null
+    }
+  }, [])
 
   return (
     <>
@@ -75,12 +92,19 @@ export default function LiveStudioPortal() {
               aria-modal="true"
               aria-labelledby="live-studio-title"
             >
-              <button className="live-studio-close" type="button" onClick={closeStudio} aria-label="Close Live Studio">
+              <button
+                className="live-studio-close"
+                type="button"
+                onClick={closeStudio}
+                aria-label="Close Live Studio"
+              >
                 <X size={20} />
               </button>
 
               <div className="live-studio-status">
-                <span><Radio size={15} /> Studio preview</span>
+                <span>
+                  <Radio size={15} /> Studio preview
+                </span>
                 <small>No live broadcast is active yet</small>
               </div>
 
@@ -89,17 +113,22 @@ export default function LiveStudioPortal() {
                   <p className="eyebrow">Live at LunarWolf</p>
                   <h2 id="live-studio-title">Step inside the studio.</h2>
                   <p>
-                    Watch future live coding sessions, product walkthroughs, and Q&amp;As—or request to join the waiting room.
+                    Watch future live coding sessions, product walkthroughs, and Q&amp;As—or request
+                    to join the waiting room.
                   </p>
 
                   <div className="live-studio-options">
                     <button type="button" onClick={() => setMode('watch')}>
-                      <span><Eye size={22} /></span>
+                      <span>
+                        <Eye size={22} />
+                      </span>
                       <strong>Watch only</strong>
                       <small>No camera or microphone access required.</small>
                     </button>
                     <button type="button" onClick={() => setMode('join')}>
-                      <span><Video size={22} /></span>
+                      <span>
+                        <Video size={22} />
+                      </span>
                       <strong>Request to join</strong>
                       <small>Preview first, then wait for host approval.</small>
                     </button>
@@ -121,7 +150,11 @@ export default function LiveStudioPortal() {
                     <strong>The studio is currently offline.</strong>
                     <p>When LunarWolf goes live, this area will become the stream player.</p>
                   </div>
-                  <button className="live-studio-secondary" type="button" onClick={() => setMode('menu')}>
+                  <button
+                    className="live-studio-secondary"
+                    type="button"
+                    onClick={() => setMode('menu')}
+                  >
                     Back to options
                   </button>
                 </div>
@@ -135,7 +168,7 @@ export default function LiveStudioPortal() {
 
                   <div className="live-studio-preview">
                     <video ref={videoRef} muted playsInline aria-label="Private camera preview" />
-                    {!streamRef.current && (
+                    {!previewEnabled && (
                       <div>
                         <Camera size={30} />
                         <span>Private preview</span>
@@ -144,8 +177,12 @@ export default function LiveStudioPortal() {
                   </div>
 
                   <div className="live-studio-device-status">
-                    <span><Camera size={16} /> Camera</span>
-                    <span><Mic size={16} /> Microphone</span>
+                    <span>
+                      <Camera size={16} /> Camera
+                    </span>
+                    <span>
+                      <Mic size={16} /> Microphone
+                    </span>
                     <small>{permissionMessage}</small>
                   </div>
 
@@ -153,7 +190,14 @@ export default function LiveStudioPortal() {
                     <button className="live-studio-primary" type="button" onClick={enablePreview}>
                       Enable private preview
                     </button>
-                    <button className="live-studio-secondary" type="button" onClick={() => { stopPreview(); setMode('menu') }}>
+                    <button
+                      className="live-studio-secondary"
+                      type="button"
+                      onClick={() => {
+                        stopPreview()
+                        setMode('menu')
+                      }}
+                    >
                       Back
                     </button>
                   </div>
