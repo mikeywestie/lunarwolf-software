@@ -38,7 +38,8 @@ const projects: Project[] = [
     title: 'Exclusive Pets Grooming Parlour',
     description:
       'A warm, responsive website that gives a local grooming business a clearer customer journey from first visit to booking enquiry.',
-    outcome: 'A professional online presence designed to build trust and make customer contact easier.',
+    outcome:
+      'A professional online presence designed to build trust and make customer contact easier.',
     label: 'Exclusive Pets',
     mockupTitle: 'Grooming with as much care as love.',
     metricLabel: 'Experience',
@@ -56,7 +57,8 @@ const projects: Project[] = [
     title: 'Demo E-Commerce Platform',
     description:
       'A production-style Java and React commerce platform demonstrating secure APIs, role-based access, realistic checkout workflows, observability, and cloud deployment.',
-    outcome: 'A technical showcase spanning customer journeys, admin operations, security, testing, and deployment.',
+    outcome:
+      'A technical showcase spanning customer journeys, admin operations, security, testing, and deployment.',
     label: 'Commerce Platform',
     mockupTitle: 'Secure shopping, operations, and insight in one system.',
     metricLabel: 'Architecture',
@@ -74,7 +76,8 @@ const projects: Project[] = [
     title: 'N&S Automation Work',
     description:
       'Practical workflow automation focused on reducing repetitive administration, improving quote handling, and helping a small business operate more efficiently.',
-    outcome: 'Less manual administration and a clearer path from incoming work to prepared quotations.',
+    outcome:
+      'Less manual administration and a clearer path from incoming work to prepared quotations.',
     label: 'N&S Services',
     mockupTitle: 'Less repetitive admin. More time for the business.',
     metricLabel: 'Focus',
@@ -92,7 +95,8 @@ const projects: Project[] = [
     title: 'QuoteFlow Mobile',
     description:
       'A native Android quotation management application built to simplify mobile quote creation and keep essential business information available on the move.',
-    outcome: 'A portable quotation workflow for creating and managing business quotes wherever work happens.',
+    outcome:
+      'A portable quotation workflow for creating and managing business quotes wherever work happens.',
     label: 'QuoteFlow Mobile',
     mockupTitle: 'Create and manage quotations wherever work happens.',
     metricLabel: 'Platform',
