@@ -99,7 +99,9 @@ export default function LiveStudioPortal() {
                         <Video size={22} />
                       </span>
                       <strong>Join the studio</strong>
-                      <small>Enter the same live room and choose when to enable your devices.</small>
+                      <small>
+                        Enter the same live room and choose when to enable your devices.
+                      </small>
                     </button>
                   </div>
 
@@ -119,7 +121,9 @@ export default function LiveStudioPortal() {
                     {mode === 'watch' ? 'Muted viewer entry' : 'Live participant entry'}
                   </p>
                   <h2 id="live-studio-title">
-                    {mode === 'watch' ? 'Enter quietly and watch live.' : 'Join the LunarWolf room.'}
+                    {mode === 'watch'
+                      ? 'Enter quietly and watch live.'
+                      : 'Join the LunarWolf room.'}
                   </h2>
                   <p>
                     Your camera and microphone start muted. Jitsi will show its own device controls
@@ -172,7 +176,9 @@ export default function LiveStudioPortal() {
                     referrerPolicy="strict-origin-when-cross-origin"
                   />
                   <div className="live-studio-room-footer">
-                    <span>Use the red hang-up button inside the room before closing this window.</span>
+                    <span>
+                      Use the red hang-up button inside the room before closing this window.
+                    </span>
                     <button className="live-studio-secondary" type="button" onClick={returnToMenu}>
                       Leave studio
                     </button>
