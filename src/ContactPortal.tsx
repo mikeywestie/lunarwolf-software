@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useState, type FormEvent } from 'react'
 import { CalendarDays, Mail, MessageCircle, Send, ShieldCheck } from 'lucide-react'
 import { createPortal } from 'react-dom'
 import { motion } from 'framer-motion'
@@ -111,7 +111,12 @@ export default function ContactPortal() {
           <h3>Choose the easiest way to start.</h3>
           <p>No sales maze. No ticket queue. Just a clear first conversation.</p>
 
-          <a className="contact-direct-link" href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+          <a
+            className="contact-direct-link"
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <MessageCircle size={21} aria-hidden="true" />
             <span>
               <strong>WhatsApp LunarWolf</strong>
@@ -225,7 +230,8 @@ export default function ContactPortal() {
             Prepare email enquiry <Send size={17} aria-hidden="true" />
           </button>
           <small className="contact-submit-note">
-            This opens your email app with the project brief pre-filled. Nothing is sent automatically.
+            This opens your email app with the project brief pre-filled. Nothing is sent
+            automatically.
           </small>
         </motion.form>
       </div>
