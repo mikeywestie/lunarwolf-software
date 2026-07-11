@@ -14,6 +14,11 @@
   filter: drop-shadow(0 0 24px rgba(112, 200, 255, 0.24));
 }
 
+nav a[href='#founder'],
+.founder-section {
+  display: none;
+}
+
 .hero {
   position: relative;
   isolation: isolate;
