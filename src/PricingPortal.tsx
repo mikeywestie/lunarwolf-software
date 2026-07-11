@@ -120,8 +120,8 @@ export default function PricingPortal() {
       <div className="pricing-flex-note">
         <strong>No two projects are exactly alike.</strong>
         <span>
-          We will shape the scope together before any work begins, so you understand what is included
-          and why.
+          We will shape the scope together before any work begins, so you understand what is
+          included and why.
         </span>
       </div>
     </div>,
