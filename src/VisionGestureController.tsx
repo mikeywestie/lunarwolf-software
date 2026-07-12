@@ -55,19 +55,21 @@ export default function VisionGestureController() {
   const cooldownRef = useRef(0)
   const [enabled, setEnabled] = useState(false)
   const [status, setStatus] = useState<'idle' | 'loading' | 'ready' | 'error'>('idle')
-  const [gesture, setGesture] = useState('No hand detected')
+  const [gesture, setGesture] = useState('Gesture control is off')
+
+  const toggleGestureControl = () => {
+    const nextEnabled = !enabled
+    setEnabled(nextEnabled)
+    setStatus(nextEnabled ? 'loading' : 'idle')
+    setGesture(nextEnabled ? 'Preparing hand tracking…' : 'Gesture control is off')
+  }
 
   useEffect(() => {
-    if (!enabled) {
-      setGesture('Gesture control is off')
-      return
-    }
+    if (!enabled) return
 
     let cancelled = false
 
     const load = async () => {
-      setStatus('loading')
-
       try {
         const visionModule = (await import(/* @vite-ignore */ moduleUrl)) as VisionModule
         const vision = await visionModule.FilesetResolver.forVisionTasks(wasmUrl)
@@ -87,7 +89,9 @@ export default function VisionGestureController() {
 
         landmarkerRef.current = landmarker
         setStatus('ready')
+        setGesture('No hand detected')
       } catch {
+        if (cancelled) return
         setStatus('error')
         setGesture('Hand tracking could not load')
       }
@@ -206,7 +210,7 @@ export default function VisionGestureController() {
         <button
           type="button"
           className={enabled ? 'enabled' : ''}
-          onClick={() => setEnabled((value) => !value)}
+          onClick={toggleGestureControl}
           aria-pressed={enabled}
         >
           {enabled ? <ToggleRight size={24} /> : <ToggleLeft size={24} />}
