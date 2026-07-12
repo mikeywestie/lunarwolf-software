@@ -6,6 +6,7 @@ import ContactPortal from './ContactPortal'
 import FeaturedProjectsPortal from './FeaturedProjectsPortal'
 import LiveStudioPortal from './LiveStudioPortal'
 import PricingPortal from './PricingPortal'
+import SuccessStoriesPortal from './SuccessStoriesPortal'
 import '@fontsource-variable/inter/standard.css'
 import './index.css'
 
@@ -14,6 +15,7 @@ createRoot(document.getElementById('root')!).render(
     <App />
     <FeaturedProjectsPortal />
     <PricingPortal />
+    <SuccessStoriesPortal />
     <ContactPortal />
     <BreakRoomPortal />
     <LiveStudioPortal />
