@@ -73,7 +73,12 @@ export default function VisionStudioPanel() {
         context.drawImage(video, 0, 0, width, height)
         context.restore()
 
-        const gradient = context.createLinearGradient(x - radius, y - radius, x + radius, y + radius)
+        const gradient = context.createLinearGradient(
+          x - radius,
+          y - radius,
+          x + radius,
+          y + radius,
+        )
         gradient.addColorStop(0, 'rgba(128, 220, 255, 0.95)')
         gradient.addColorStop(0.5, 'rgba(179, 121, 255, 0.95)')
         gradient.addColorStop(1, 'rgba(255, 255, 255, 0.9)')
@@ -146,13 +151,25 @@ export default function VisionStudioPanel() {
 
       <div className="vision-controls">
         <div className="vision-effect-grid" role="group" aria-label="Camera effect">
-          <button className={effect === 'normal' ? 'active' : ''} onClick={() => setEffect('normal')} type="button">
+          <button
+            className={effect === 'normal' ? 'active' : ''}
+            onClick={() => setEffect('normal')}
+            type="button"
+          >
             <Camera size={18} /> Normal
           </button>
-          <button className={effect === 'ghost' ? 'active' : ''} onClick={() => setEffect('ghost')} type="button">
+          <button
+            className={effect === 'ghost' ? 'active' : ''}
+            onClick={() => setEffect('ghost')}
+            type="button"
+          >
             <Sparkles size={18} /> Ghost
           </button>
-          <button className={effect === 'portal' ? 'active' : ''} onClick={() => setEffect('portal')} type="button">
+          <button
+            className={effect === 'portal' ? 'active' : ''}
+            onClick={() => setEffect('portal')}
+            type="button"
+          >
             <CircleDot size={18} /> Portal
           </button>
         </div>
@@ -179,18 +196,33 @@ export default function VisionStudioPanel() {
               <CameraOff size={18} /> Stop camera
             </button>
           )}
-          <button className="live-studio-secondary" type="button" disabled={!cameraOn} onClick={() => setFrozen((value) => !value)}>
+          <button
+            className="live-studio-secondary"
+            type="button"
+            disabled={!cameraOn}
+            onClick={() => setFrozen((value) => !value)}
+          >
             {frozen ? <Play size={18} /> : <Pause size={18} />}
             {frozen ? 'Resume' : 'Freeze'}
           </button>
-          <button className="live-studio-secondary" type="button" disabled={!cameraOn} onClick={saveFrame}>
+          <button
+            className="live-studio-secondary"
+            type="button"
+            disabled={!cameraOn}
+            onClick={saveFrame}
+          >
             <Download size={18} /> Snapshot
           </button>
         </div>
 
-        {error && <p className="vision-error" role="alert">{error}</p>}
+        {error && (
+          <p className="vision-error" role="alert">
+            {error}
+          </p>
+        )}
         <p className="vision-note">
-          Prototype pipeline: webcam → canvas effects → browser MediaStream-ready output. Gesture recognition and person segmentation are the next layer.
+          Prototype pipeline: webcam → canvas effects → browser MediaStream-ready output. Gesture
+          recognition and person segmentation are the next layer.
         </p>
       </div>
     </div>
