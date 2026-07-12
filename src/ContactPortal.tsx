@@ -1,5 +1,12 @@
 import { useEffect, useMemo, useState, type FormEvent } from 'react'
-import { CalendarDays, Mail, MessageCircle, Send, ShieldCheck } from 'lucide-react'
+import {
+  CalendarDays,
+  ExternalLink,
+  Mail,
+  MessageCircle,
+  Send,
+  ShieldCheck,
+} from 'lucide-react'
 import { createPortal } from 'react-dom'
 import { motion } from 'framer-motion'
 import './contact.css'
@@ -8,6 +15,7 @@ type ProjectPlan = 'Starter' | 'Business' | 'Custom Software' | 'Not sure yet'
 
 const emailAddress = 'lunarwolf.dev@gmail.com'
 const whatsappNumber = '27625315897'
+const calendlyBaseUrl = 'https://calendly.com/lunarwolf-dev/30min'
 
 export default function ContactPortal() {
   const [target, setTarget] = useState<HTMLElement | null>(null)
@@ -47,6 +55,19 @@ export default function ContactPortal() {
       `Hi LunarWolf, I would like to discuss a ${plan === 'Not sure yet' ? 'new project' : plan + ' project'}.`,
     )
     return `https://wa.me/${whatsappNumber}?text=${message}`
+  }, [plan])
+
+  const calendlyUrl = useMemo(() => {
+    const url = new URL(calendlyBaseUrl)
+    url.searchParams.set('hide_gdpr_banner', '1')
+    url.searchParams.set('background_color', 'ffffff')
+    url.searchParams.set('text_color', '071827')
+    url.searchParams.set('primary_color', '0879b9')
+    url.searchParams.set('utm_source', 'lunarwolf-website')
+    url.searchParams.set('utm_medium', 'booking-embed')
+    url.searchParams.set('utm_campaign', 'discovery-call')
+    url.searchParams.set('utm_content', plan)
+    return url.toString()
   }, [plan])
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -94,10 +115,46 @@ export default function ContactPortal() {
           <h2>Tell us what you need. We’ll help shape the right solution.</h2>
         </div>
         <p>
-          Start with a quick message, request a discovery call, or send a structured project brief.
-          Every enquiry goes directly to LunarWolf.
+          Book a free 30-minute discovery call, start a WhatsApp conversation, or send a structured
+          project brief. Every enquiry goes directly to LunarWolf.
         </p>
       </motion.div>
+
+      <motion.section
+        className="calendly-booking-card"
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.18 }}
+        transition={{ duration: 0.6 }}
+        aria-labelledby="booking-heading"
+      >
+        <div className="calendly-booking-copy">
+          <p className="contact-kicker">Free discovery call</p>
+          <h3 id="booking-heading">Choose a time that works for you.</h3>
+          <p>
+            Book a focused 30-minute conversation about your goals, scope, timeline, and the best next
+            step for your project.
+          </p>
+          <div className="calendly-booking-meta" aria-label="Discovery call details">
+            <span>30 minutes</span>
+            <span>Video meeting</span>
+            <span>No obligation</span>
+          </div>
+          <a className="calendly-external-link" href={calendlyUrl} target="_blank" rel="noopener noreferrer">
+            Open Calendly in a new tab <ExternalLink size={17} aria-hidden="true" />
+          </a>
+        </div>
+
+        <div className="calendly-frame-wrap">
+          <iframe
+            className="calendly-frame"
+            src={calendlyUrl}
+            title="Book a LunarWolf discovery call with Calendly"
+            loading="lazy"
+            allow="camera; microphone; fullscreen; payment"
+          />
+        </div>
+      </motion.section>
 
       <div className="contact-portal-grid">
         <motion.aside
@@ -134,12 +191,14 @@ export default function ContactPortal() {
 
           <a
             className="contact-direct-link"
-            href={`mailto:${emailAddress}?subject=${encodeURIComponent('Discovery call request')}`}
+            href={calendlyUrl}
+            target="_blank"
+            rel="noopener noreferrer"
           >
             <CalendarDays size={21} aria-hidden="true" />
             <span>
-              <strong>Request a discovery call</strong>
-              <small>Booking link coming soon</small>
+              <strong>Book a discovery call</strong>
+              <small>Choose a live time on Calendly</small>
             </span>
           </a>
 
@@ -230,8 +289,7 @@ export default function ContactPortal() {
             Prepare email enquiry <Send size={17} aria-hidden="true" />
           </button>
           <small className="contact-submit-note">
-            This opens your email app with the project brief pre-filled. Nothing is sent
-            automatically.
+            This opens your email app with the project brief pre-filled. Nothing is sent automatically.
           </small>
         </motion.form>
       </div>
