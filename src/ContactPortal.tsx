@@ -140,7 +140,12 @@ export default function ContactPortal() {
             <span>Video meeting</span>
             <span>No obligation</span>
           </div>
-          <a className="calendly-external-link" href={calendlyUrl} target="_blank" rel="noopener noreferrer">
+          <a
+            className="calendly-external-link"
+            href={calendlyUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Open Calendly in a new tab <ExternalLink size={17} aria-hidden="true" />
           </a>
         </div>
@@ -289,7 +294,8 @@ export default function ContactPortal() {
             Prepare email enquiry <Send size={17} aria-hidden="true" />
           </button>
           <small className="contact-submit-note">
-            This opens your email app with the project brief pre-filled. Nothing is sent automatically.
+            This opens your email app with the project brief pre-filled. Nothing is sent
+            automatically.
           </small>
         </motion.form>
       </div>
