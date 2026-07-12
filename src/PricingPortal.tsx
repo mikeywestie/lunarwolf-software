@@ -114,11 +114,7 @@ export default function PricingPortal() {
                 </li>
               ))}
             </ul>
-            <a
-              className="pricing-action"
-              href="#contact"
-              onClick={() => selectPlan(option.name)}
-            >
+            <a className="pricing-action" href="#contact" onClick={() => selectPlan(option.name)}>
               <MessageCircle size={17} aria-hidden="true" /> Discuss this option
             </a>
           </motion.article>
