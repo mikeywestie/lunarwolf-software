@@ -1,5 +1,14 @@
 import { useState } from 'react'
-import { ExternalLink, Eye, Radio, ShieldCheck, Users, Video, WandSparkles, X } from 'lucide-react'
+import {
+  ExternalLink,
+  Eye,
+  Radio,
+  ShieldCheck,
+  Users,
+  Video,
+  WandSparkles,
+  X,
+} from 'lucide-react'
 import { AnimatePresence, motion } from 'framer-motion'
 import VisionStudioPanel from './VisionStudioPanel'
 import './live-studio.css'
@@ -111,7 +120,9 @@ export default function LiveStudioPortal() {
                         <WandSparkles size={22} />
                       </span>
                       <strong>Vision Studio</strong>
-                      <small>Test live camera transparency, portal effects, freeze, and snapshots.</small>
+                      <small>
+                        Test live camera transparency, portal effects, freeze, and snapshots.
+                      </small>
                     </button>
                   </div>
 
