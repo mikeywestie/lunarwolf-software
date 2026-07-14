@@ -4,7 +4,6 @@ import App from './App'
 import BreakRoomPortal from './BreakRoomPortal'
 import ContactPortal from './ContactPortal'
 import FeaturedProjectsPortal from './FeaturedProjectsPortal'
-import LiveStudioPortal from './LiveStudioPortal'
 import PricingPortal from './PricingPortal'
 import SuccessStoriesPortal from './SuccessStoriesPortal'
 import '@fontsource-variable/inter/standard.css'
@@ -18,6 +17,5 @@ createRoot(document.getElementById('root')!).render(
     <SuccessStoriesPortal />
     <ContactPortal />
     <BreakRoomPortal />
-    <LiveStudioPortal />
   </StrictMode>,
 )
